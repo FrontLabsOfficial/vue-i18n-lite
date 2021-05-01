@@ -1,0 +1,7 @@
+{
+  "include": [
+    "*.ts",
+    "../src/global.d.ts",
+    "shim.d.ts"
+  ]
+}
