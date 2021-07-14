@@ -12,6 +12,7 @@ import App from './App.vue';
 
 const i18n = createI18n({
     locale: 'en',
+    fallbackLocale: 'en',
     messages: {
         'en': {
             home: 'Home'
@@ -33,6 +34,7 @@ export default {
         const i18n = useI18n()
         i18n.createI18n({
             locale: 'en',
+            fallbackLocale: 'en',
             messages: {
                 'en': {
                     home: 'Home'

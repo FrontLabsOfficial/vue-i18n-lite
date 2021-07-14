@@ -6,6 +6,7 @@ import { DeepReadonly, UnwrapNestedRefs } from '@vue/reactivity'
  */
 export type I18nOptions = {
   locale?: string
+  fallbackLocale?: string
   messages?: I18nLocales
 }
 

@@ -21,7 +21,10 @@ import { vueI18nKey } from './injectionSymbols'
  * @param options - {@link I18nOptions}
  */
 export function createI18n(options?: I18nOptions): I18n {
-  const initOptions = Object.assign({ locale: 'en', messages: {} }, options)
+  const initOptions = Object.assign(
+    { locale: 'en', fallbackLocale: 'en', messages: {} },
+    options
+  )
   const current = ref(initOptions.locale)
   const locales: I18nLocales = initOptions.messages
 
@@ -33,11 +36,10 @@ export function createI18n(options?: I18nOptions): I18n {
 
       const locale =
         typeof option === 'string' && option ? option : current.value
-      if (!locales[locale]) {
-        return key
-      }
 
-      let message = getMessage(locales[locale], key)
+      let message =
+        getMessage(locales[locale], key) ||
+        getMessage(locales[initOptions.fallbackLocale], key)
       if (option && typeof option !== 'string') {
         const values = parseLocaleValues(message, option)
         if (!isEmpty(values)) {
