@@ -123,10 +123,31 @@ export function parseLocaleValues(
  * @param message
  * @param values
  */
-export function replaceLocaleValues(message: string, values: I18nValueObject) {
+export function replaceLocaleValues(
+  message: string,
+  values: I18nValueObject
+): string {
   for (const key in values) {
     message = message.replace(`{${key}}`, String(values[key]))
   }
 
   return message
+}
+
+/**
+ * Merge deep
+ * @param target
+ * @param source
+ */
+export function mergeDeep(
+  target: Record<string, any>,
+  source: Record<string, any>
+): Record<string, any> {
+  Object.keys(source).forEach(key => {
+    if (source[key] instanceof Object && key in target) {
+      source[key] = { ...source[key], ...mergeDeep(target[key], source[key]) }
+    }
+  })
+
+  return { ...(target || {}), ...source }
 }
