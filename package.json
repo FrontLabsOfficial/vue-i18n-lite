@@ -1,6 +1,6 @@
 {
   "name": "vue-i18n-lite",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/vue-i18n-lite.cjs.js",
   "unpkg": "dist/vue-i18n-lite.global.js",
   "jsdelivr": "dist/vue-i18n-lite.global.js",

@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/FrontLabsOfficial/vue-i18n-lite/compare/v1.0.1...v1.0.2) (2021-08-05)
+
+
+### Features
+
+* add fallback locale ([e085e3b](https://github.com/FrontLabsOfficial/vue-i18n-lite/commit/e085e3b43546c316dcdf0affd875d3d142853975))
+
+
+
 ## [1.0.1](https://github.com/FrontLabsOfficial/vue-i18n-lite/compare/v1.0.0...v1.0.1) (2021-05-04)
 
 
