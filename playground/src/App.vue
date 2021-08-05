@@ -1,6 +1,7 @@
 <template>
   <h2>{{ $t('button.add') }}</h2>
   <p>Current: {{ current }}</p>
+  <p>Missing key: {{ $t('button.description') }}</p>
   <label>
     Select language
     <select :value="current" @change="(e) => changeLocale(e.target.value)">
@@ -10,6 +11,7 @@
     </select>
   </label>
   <br>
+  <button @click="addNewMessages">Add new messages</button>
   <button @click="addNewLocale" v-if="!added">Add new locale</button>
 </template>
 
@@ -45,12 +47,21 @@ export default {
       languages.push({ code: 'fr', name: 'French' })
     }
 
+    const addNewMessages = () => {
+      setLocaleMessage(current.value, {
+        button: {
+          description: 'Description'
+        }
+      })
+    }
+
     return {
       changeLocale,
       current,
       added,
       addNewLocale,
-      languages
+      languages,
+      addNewMessages
     }
   },
 }

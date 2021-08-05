@@ -1,7 +1,8 @@
-import { App, ref, readonly } from 'vue'
+import { App, ref, reactive, readonly, toRaw } from 'vue'
 import {
   getMessage,
   isEmpty,
+  mergeDeep,
   parseLocaleValues,
   replaceLocaleValues,
 } from './utils'
@@ -26,7 +27,10 @@ export function createI18n(options?: I18nOptions): I18n {
     options
   )
   const current = ref(initOptions.locale)
-  const locales: I18nLocales = initOptions.messages
+  const locales: I18nLocales = reactive({})
+  Object.entries(initOptions.messages).forEach(([key, messages]) => {
+    locales[key] = messages
+  })
 
   return {
     t(key: string, option?: I18nLocale | I18nValues): string {
@@ -60,7 +64,7 @@ export function createI18n(options?: I18nOptions): I18n {
       current.value = locale
     },
     setLocaleMessage(locale: string, messages: I18nLocaleMessages) {
-      locales[locale] = Object.assign({}, locales[locale] || {}, messages)
+      locales[locale] = mergeDeep(toRaw(locales[locale] || {}), messages)
     },
     getLocaleMessage(locale: I18nLocale): I18nLocaleMessages {
       return locales[locale] || {}
