@@ -10,6 +10,7 @@ export type I18nOptions = {
   messages?: {
     [locale: string]: I18nLocaleMessages
   }
+  missing?: (locale: string, key: string) => string
 }
 
 /**

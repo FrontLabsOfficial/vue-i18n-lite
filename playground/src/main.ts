@@ -16,6 +16,10 @@ const i18n = createI18n({
       },
     },
   },
+  missing: (locale, key) => {
+    console.error(`Missing translation for key: ${key}`)
+    return key
+  },
 })
 
 const app = createApp(App)
