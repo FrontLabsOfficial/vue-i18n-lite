@@ -50,7 +50,9 @@ export function createI18n(options?: I18nOptions): I18n {
           message = replaceLocaleValues(message, values)
         }
       }
-
+      if (!message) {
+        options?.missing?.(locale, key)
+      }
       return message || key
     },
     current: readonly(current),
